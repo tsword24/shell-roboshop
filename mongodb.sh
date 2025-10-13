@@ -23,6 +23,7 @@ VALIDATE(){
         echo -e "Install is $G success$N"  | tee -a $LOG_FILE
     else
         echo -e "$R Failure$N" | tee -a $LOG_FILE
+        exit 1
     fi
 }
 
