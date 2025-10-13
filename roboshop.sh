@@ -9,5 +9,5 @@ IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservation
 else
 IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text)
 fi
-
+echo "$INSANCE_ID:$IP"
 done
