@@ -20,10 +20,10 @@ fi
 
 VALIDATE(){
     if [ $1 -eq 0 ];then
-        echo -e "Install is $G success$N"  | tee -a $LOG_FILE
+        echo -e "Install of $2 $G success$N"  | tee -a $LOG_FILE
     else
-        echo -e "$R Failure$N" | tee -a $LOG_FILE
-        exit 1
+        echo -e "Install of $2 $R Failure$N" | tee -a $LOG_FILE
+        exit 1 
     fi
 }
 
