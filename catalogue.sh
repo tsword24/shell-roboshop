@@ -30,13 +30,13 @@ VALIDATE(){
 
 
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "Disabling nodejs" 
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$LOG_FILE
 VALIDATE $? "enable nodejs 20" 
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installing nodejs" 
 
 id roboshop
@@ -49,19 +49,19 @@ fi
 mkdir -p /app 
 VALIDATE $? "Creating a app directory" 
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip  
 VALIDATE $? "Downloading zip files" 
 
 cd /app 
 VALIDATE $? "Go to app directory" 
 
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "unzipping the contents" 
 
 cd /app 
 VALIDATE $? "go to app directory" 
 
-npm install 
+npm install  &>>$LOG_FILE
 VALIDATE $? "Installing node packages" 
 
 cp $DIRECTORY/catalogue.service /etc/systemd/system/catalogue.service
@@ -70,7 +70,7 @@ VALIDATE $? "Downloading client side mongodb"
 systemctl daemon-reload
 VALIDATE $? "deamon reload" 
 
-systemctl enable catalogue 
+systemctl enable catalogue &>>$LOG_FILE
 VALIDATE $? "enabling the catalogue" 
 
 systemctl start catalogue
@@ -79,7 +79,7 @@ VALIDATE $? "starting  the catalogue"
 cp $DIRECTORY/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "copying the mongo repo" 
 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installing mongo repo" 
 
 mongosh --host $MONGODB_DOMAIN </app/db/master-data.js
