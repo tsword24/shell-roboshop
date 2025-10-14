@@ -41,7 +41,7 @@ VALIDATE $? "Installing nodejs"
 
 id roboshop
 if [ $? -ne 0 ];then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
     VALIDATE $? "Creating a user" 
 else
     echo -e "User already present $Y Skipping $Y"
@@ -54,6 +54,9 @@ VALIDATE $? "Downloading zip files"
 
 cd /app 
 VALIDATE $? "Go to app directory" 
+
+rm -rf /app/*
+VALIDATE $? "removing the previous data"
 
 unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "unzipping the contents" 
