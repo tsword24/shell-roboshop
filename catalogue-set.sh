@@ -10,7 +10,7 @@ Y="\e[33m"
 N="\e[0m"
 USERID=$(id -u)
 
-LOGS_FOLDER="/var/log/mongodb"
+LOGS_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME="$( echo $0 | cut -d "." -f1)" #to get the script name
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 MONGODB_DOMAIN="mongodb.ssnationals.fun"
