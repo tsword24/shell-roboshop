@@ -11,7 +11,7 @@ SCRIPT_NAME="$( echo $0 | cut -d "." -f1)" #to get the script name
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 MONGODB_DOMAIN="mongodb.ssnationals.fun"
 DIRECTORY=$PWD
-$START_TIME=$(date +%s)
+START_TIME=$(date +%s)
 mkdir -p $LOGS_FOLDER
 echo "Script Started at $(date)" | tee -a $LOG_FILE
 
