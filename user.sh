@@ -67,7 +67,7 @@ VALIDATE $? "go to app directory"
 npm install  &>>$LOG_FILE
 VALIDATE $? "node package manager"
 
-cp $SCRIPT_DIRECTORY/user.service  /etc/systemd/system/user.service
+cp $DIRECTORY/user.service  /etc/systemd/system/user.service
 VALIDATE $? "enabel user service"
 
 systemctl daemon-reload
