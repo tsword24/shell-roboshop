@@ -82,7 +82,13 @@ VALIDATE $? "starting  the catalogue"
 cp $DIRECTORY/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "copying the mongo repo" 
 
-dnf install mongodb-mongosh -y &>>$LOG_FILE
+dnf install mongodb-mongosh -y id roboshop
+if [ $? -ne 0 ];then
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+    VALIDATE $? "Creating a user" 
+else
+    echo -e "User already present $Y Skipping $Y"
+fi
 VALIDATE $? "Installing mongo repo" 
 
 INDEX=$(mongosh mongodb.ssnationals.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
