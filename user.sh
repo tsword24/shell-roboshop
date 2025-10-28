@@ -46,7 +46,7 @@ else
     echo -e "User already present $Y Skipping $Y"
 fi
 
-mkdir /app 
+mkdir -p /app 
 VALIDATE $? "Make app directory"
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
