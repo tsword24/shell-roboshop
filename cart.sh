@@ -67,7 +67,7 @@ VALIDATE $? "go to app directory"
 npm install  &>>$LOG_FILE
 VALIDATE $? "node package manager"
 
-cp $SCRIPT_DIRECTORY/cart.service  /etc/systemd/system/cart.service
+cp $DIRECTORY/cart.service  /etc/systemd/system/cart.service
 VALIDATE $? "enabel cart service"
 
 systemctl daemon-reload
