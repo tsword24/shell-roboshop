@@ -83,7 +83,7 @@ VALIDATE $? "starting  the catalogue"
 cp $DIRECTORY/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "copying the mongo repo" 
 
-dnf install mongodb-mongosh -y id roboshop
+dnf install mongodb-mongosh -y 
 if [ $? -ne 0 ];then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
     VALIDATE $? "Creating a user" 
